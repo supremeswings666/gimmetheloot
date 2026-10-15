@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина | Gimmetheloot</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+body { margin: 0; background-color: #080808; color: #ffffff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+.container { max-width: 1280px; margin: 0 auto; padding: 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255, 0, 51, 0.3); }
+.logo { font-size: 32px; font-weight: 900; color: #ff0033; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255, 0, 51, 0.8); cursor: pointer; }
+.nav a { color: #ccc; text-decoration: none; margin-left: 30px; font-weight: 700; transition: 0.3s; font-size: 14px; text-transform: uppercase; }
+.nav a:hover { color: #ff0033; text-shadow: 0 0 10px #ff0033; }
+.btn-glow { background: linear-gradient(45deg, #ff0033, #80001a); border: 1px solid #ff0033; color: white; padding: 16px 32px; border-radius: 8px; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 0 20px rgba(255, 0, 51, 0.5); transition: 0.3s; text-transform: uppercase; }
+.btn-glow:hover { box-shadow: 0 0 40px rgba(255, 0, 51, 0.9); transform: translateY(-2px); }
+.title { font-size: 40px; font-weight: 900; margin-bottom: 40px; }
+.title span { color: #ff0033; text-shadow: 0 0 20px rgba(255,0,51,0.5); }
+.glass-card { background: rgba(20, 0, 0, 0.4); border: 1px solid rgba(255, 0, 51, 0.3); border-radius: 16px; padding: 30px; backdrop-filter: blur(12px); text-align: center; }
+.footer { text-align: center; padding: 40px 0; color: #444; border-top: 1px solid rgba(255,0,51,0.2); margin-top: 80px; font-weight: 700; font-size: 12px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo" onclick="window.location.href='01home.html'">GIMMETHELOOT</div>
+            <div class="nav">
+                <a href="01home.html">Главная</a>
+                <a href="02catalog.html">Каталог</a>
+                <a href="06profile.html">Профиль</a>
+                <a href="09cart.html">Корзина</a>
+            </div>
+        </div>
+        <div class="content" style="min-height: 65vh; padding: 60px 0;">
+            <h2 class="title">ВАША <span>КОРЗИНА</span></h2>
+            
+            <div style="display: flex; gap: 40px;">
+                <div style="flex: 2;">
+                    <div class="glass-card" style="display: flex; align-items: center; justify-content: space-between; padding: 20px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div style="width: 80px; height: 80px; background: #111; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 30px; border: 1px solid #333;">💻</div>
+                            <div style="text-align: left;">
+                                <h3 style="margin: 0 0 5px 0;">IT & Code Box</h3>
+                                <div style="color: #999; font-size: 14px;">Категория: Geek</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 24px; font-weight: bold; color: #ff0033;">1 500 ₽</div>
+                        <button style="background: transparent; border: none; color: #666; cursor: pointer; font-size: 20px;">✕</button>
+                    </div>
+                    
+                    <div class="glass-card" style="display: flex; align-items: center; justify-content: space-between; padding: 20px;">
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div style="width: 80px; height: 80px; background: #111; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 30px; border: 1px solid #333;">🎧</div>
+                            <div style="text-align: left;">
+                                <h3 style="margin: 0 0 5px 0;">Интроверт-пак</h3>
+                                <div style="color: #999; font-size: 14px;">Категория: Chill</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 24px; font-weight: bold; color: #ff0033;">990 ₽</div>
+                        <button style="background: transparent; border: none; color: #666; cursor: pointer; font-size: 20px;">✕</button>
+                    </div>
+                </div>
+                
+                <div style="flex: 1;">
+                    <div class="glass-card" style="position: sticky; top: 20px;">
+                        <h3 style="margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;">Сумма заказа</h3>
+                        
+                        <div style="display: flex; justify-content: space-between; margin: 20px 0; color: #ccc;">
+                            <span>Товары (2)</span>
+                            <span>2 490 ₽</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin: 20px 0; color: #ccc;">
+                            <span>Скидка</span>
+                            <span style="color: #00ccff;">0 ₽</span>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; margin: 30px 0 20px; font-size: 24px; font-weight: 900; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                            <span>Итого</span>
+                            <span style="color: #ff0033;">2 490 ₽</span>
+                        </div>
+                        
+                        <button class="btn-glow" style="width: 100%;" onclick="window.location.href='04roulette.html'">Оплатить и открыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; 2026 Gimmetheloot. Проект "Секретные коробки". UI Design.
+        </div>
+    </div>
+</body>
+</html>

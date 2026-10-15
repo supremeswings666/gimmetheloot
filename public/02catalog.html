@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог | Gimmetheloot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+        
+        body { 
+            margin: 0; 
+            background-color: #080808; 
+            color: #ffffff; 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        .container { 
+            max-width: 1280px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 0; 
+            border-bottom: 1px solid rgba(255, 0, 51, 0.3); 
+        }
+
+        .logo { 
+            font-size: 32px; 
+            font-weight: 900; 
+            color: #ff0033; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            text-shadow: 0 0 15px rgba(255, 0, 51, 0.8); 
+            cursor: pointer; 
+        }
+
+        .nav a { 
+            color: #ccc; 
+            text-decoration: none; 
+            margin-left: 30px; 
+            font-weight: 700; 
+            transition: 0.3s; 
+            font-size: 14px; 
+            text-transform: uppercase; 
+        }
+
+        .nav a:hover { 
+            color: #ff0033; 
+            text-shadow: 0 0 10px #ff0033; 
+        }
+
+        .btn-glow { 
+            background: linear-gradient(45deg, #ff0033, #80001a); 
+            border: 1px solid #ff0033; 
+            color: white; 
+            padding: 12px 24px; 
+            border-radius: 8px; 
+            font-weight: 900; 
+            font-size: 14px; 
+            cursor: pointer; 
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.5); 
+            transition: 0.3s; 
+            text-transform: uppercase; 
+            width: 100%;
+        }
+
+        .btn-glow:hover { 
+            box-shadow: 0 0 30px rgba(255, 0, 51, 0.9); 
+            transform: translateY(-2px); 
+        }
+
+        .title { 
+            font-size: 40px; 
+            font-weight: 900; 
+            margin-bottom: 30px; 
+        }
+
+        .title span { 
+            color: #ff0033; 
+            text-shadow: 0 0 20px rgba(255,0,51,0.5); 
+        }
+
+        .card-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+            margin-top: 30px; 
+        }
+
+        .glass-card { 
+            background: rgba(20, 0, 0, 0.4); 
+            border: 1px solid rgba(255, 0, 51, 0.3); 
+            border-radius: 16px; 
+            padding: 25px; 
+            backdrop-filter: blur(12px); 
+            text-align: center; 
+            transition: 0.4s; 
+            cursor: pointer;
+        }
+
+        .glass-card:hover { 
+            transform: translateY(-8px); 
+            border-color: #ff0033; 
+            box-shadow: 0 10px 30px rgba(255, 0, 51, 0.3); 
+        }
+
+        .box-image { 
+            width: 100%; 
+            height: 180px; 
+            background: #111; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border: 1px solid #333; 
+            font-size: 50px; 
+        }
+
+        .footer { 
+            text-align: center; 
+            padding: 40px 0; 
+            color: #444; 
+            border-top: 1px solid rgba(255,0,51,0.2); 
+            margin-top: 80px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo" onclick="window.location.href='01home.html'">GIMMETHELOOT</div>
+            <div class="nav">
+                <a href="01home.html">Главная</a>
+                <a href="02catalog.html">Каталог</a>
+                <a href="06profile.html">Профиль</a>
+                <a href="09cart.html">Корзина</a>
+            </div>
+        </div>
+
+        <div class="content" style="min-height: 65vh; padding: 40px 0;">
+            <h2 class="title">КАТАЛОГ <span>СЕКРЕТНЫХ КОРОБОК</span></h2>
+
+            <div class="card-grid" id="boxes-container">
+                <!-- Статические карточки-фоллбэк для гарантированного отображения -->
+                <div class="glass-card" onclick="window.location.href='03boxcard.html'">
+                    <div class="box-image">💻</div>
+                    <h3 style="margin-bottom: 10px;">IT & Code Box</h3>
+                    <div style="color: #ff0033; font-weight: 900; font-size: 20px; margin-bottom: 15px;">1 500 ₽</div>
+                    <button class="btn-glow">Открыть коробку</button>
+                </div>
+
+                <div class="glass-card" onclick="window.location.href='03boxcard.html'">
+                    <div class="box-image">🎧</div>
+                    <h3 style="margin-bottom: 10px;">Интроверт-пак</h3>
+                    <div style="color: #ff0033; font-weight: 900; font-size: 20px; margin-bottom: 15px;">990 ₽</div>
+                    <button class="btn-glow">Открыть коробку</button>
+                </div>
+
+                <div class="glass-card" onclick="window.location.href='03boxcard.html'">
+                    <div class="box-image">🎮</div>
+                    <h3 style="margin-bottom: 10px;">Gamer Mystery Box</h3>
+                    <div style="color: #ff0033; font-weight: 900; font-size: 20px; margin-bottom: 15px;">2 500 ₽</div>
+                    <button class="btn-glow">Открыть коробку</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Gimmetheloot. Проект "Секретные коробки". UI Design.
+        </div>
+    </div>
+
+    <script>
+        // Подгрузка данных из MS SQL с безопасным фоллбэком
+        fetch('/api/boxes')
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data) && data.length > 0) {
+                    const container = document.getElementById('boxes-container');
+                    container.innerHTML = data.map(box => `
+                        <div class="glass-card" onclick="window.location.href='03boxcard.html'">
+                            <div class="box-image">📦</div>
+                            <h3 style="margin-bottom: 10px;">${box.BoxName || box.Name || 'Secret Box'}</h3>
+                            <div style="color: #ff0033; font-weight: 900; font-size: 20px; margin-bottom: 15px;">${box.Price || 1000} ₽</div>
+                            <button class="btn-glow">Открыть коробку</button>
+                        </div>
+                    `).join('');
+                }
+            })
+            .catch(err => console.log('Работаем в режиме статического каталога'));
+    </script>
+</body>
+</html>

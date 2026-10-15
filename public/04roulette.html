@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рулетка | Gimmetheloot</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+body { margin: 0; background-color: #080808; color: #ffffff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+.container { max-width: 1280px; margin: 0 auto; padding: 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255, 0, 51, 0.3); }
+.logo { font-size: 32px; font-weight: 900; color: #ff0033; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255, 0, 51, 0.8); cursor: pointer; }
+.nav a { color: #ccc; text-decoration: none; margin-left: 30px; font-weight: 700; transition: 0.3s; font-size: 14px; text-transform: uppercase; }
+.btn-glow { background: linear-gradient(45deg, #ff0033, #80001a); border: 1px solid #ff0033; color: white; padding: 16px 32px; border-radius: 8px; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 0 20px rgba(255, 0, 51, 0.5); transition: 0.3s; text-transform: uppercase; }
+.title { font-size: 56px; font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
+.title span { color: #ff0033; text-shadow: 0 0 20px rgba(255,0,51,0.5); }
+.glass-card { background: rgba(20, 0, 0, 0.4); border: 1px solid rgba(255, 0, 51, 0.3); border-radius: 16px; padding: 30px; backdrop-filter: blur(12px); text-align: center; min-width: 150px; }
+.roulette-container { height: 250px; border: 2px solid #ff0033; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #0a0000; position: relative; box-shadow: inset 0 0 80px rgba(255,0,51,0.3); margin: 60px 0; }
+.roulette-line { position: absolute; width: 4px; height: 100%; background: #fff; z-index: 10; box-shadow: 0 0 15px #fff, 0 0 30px #ff0033; }
+.footer { text-align: center; padding: 40px 0; color: #444; border-top: 1px solid rgba(255,0,51,0.2); margin-top: 80px; font-weight: 700; font-size: 12px; text-transform: uppercase; }
+@keyframes spin { 0% { transform: translateX(800px); } 100% { transform: translateX(-150px); } }
+@keyframes fadeIn { 0%, 80% { opacity: 0; } 100% { opacity: 1; } }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo" onclick="window.location.href='01home.html'">GIMMETHELOOT</div>
+            <div class="nav">
+                <a href="01home.html">Главная</a>
+                <a href="02catalog.html">Каталог</a>
+                <a href="06profile.html">Профиль</a>
+                <a href="09cart.html">Корзина</a>
+            </div>
+        </div>
+        <div class="content" style="min-height: 65vh; padding: 60px 0;">
+            <div style="text-align: center;">
+                <h2 class="title" style="font-size: 36px; margin-bottom: 10px;">СИМУЛЯЦИЯ <span>РАСПАКОВКИ</span></h2>
+                <p style="color: #999; margin-bottom: 40px;">Генерация выигрыша из базы данных SQL...</p>
+                
+                <div class="roulette-container">
+                    <div class="roulette-line"></div>
+                    <div id="rouletteTape" style="display: flex; gap: 20px; animation: spin 4s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;">
+                        <!-- Элементы из базы SQL -->
+                    </div>
+                </div>
+                
+                <button class="btn-glow" onclick="window.location.href='05dropresult.html'" style="margin-top: 40px; animation: fadeIn 4s forwards; opacity: 0;">Забрать выигрыш</button>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; 2026 Gimmetheloot. Проект "Секретные коробки". UI Design.
+        </div>
+    </div>
+
+    <script>
+        async function buildRoulette() {
+            try {
+                const res = await fetch('/api/items');
+                const items = await res.json();
+
+                const tape = document.getElementById('rouletteTape');
+                tape.innerHTML = '';
+
+                const list = (items && items.length > 0) ? items : [
+                    { icon: '☕' }, { icon: '👕' }, { icon: '🖱️' }, { icon: '⌨️' }, { icon: '🎧' }
+                ];
+
+                // Повторяем элементы для длинной рулетки
+                for (let i = 0; i < 3; i++) {
+                    list.forEach(item => {
+                        const icon = item.Icon || item.icon || '🎁';
+                        tape.innerHTML += `<div class="glass-card" style="font-size: 40px;">${icon}</div>`;
+                    });
+                }
+            } catch (err) {
+                console.error('Ошибка рулетки:', err);
+            }
+        }
+
+        buildRoulette();
+    </script>
+</body>
+</html>

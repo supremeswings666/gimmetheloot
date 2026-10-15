@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карточка коробки | Gimmetheloot</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+body { margin: 0; background-color: #080808; color: #ffffff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+.container { max-width: 1280px; margin: 0 auto; padding: 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid rgba(255, 0, 51, 0.3); }
+.logo { font-size: 32px; font-weight: 900; color: #ff0033; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255, 0, 51, 0.8); cursor: pointer; }
+.nav a { color: #ccc; text-decoration: none; margin-left: 30px; font-weight: 700; transition: 0.3s; font-size: 14px; text-transform: uppercase; }
+.nav a:hover { color: #ff0033; text-shadow: 0 0 10px #ff0033; }
+.btn-glow { background: linear-gradient(45deg, #ff0033, #80001a); border: 1px solid #ff0033; color: white; padding: 16px 32px; border-radius: 8px; font-weight: 900; font-size: 16px; cursor: pointer; box-shadow: 0 0 20px rgba(255, 0, 51, 0.5); transition: 0.3s; text-transform: uppercase; }
+.btn-glow:hover { box-shadow: 0 0 40px rgba(255, 0, 51, 0.9); transform: translateY(-2px); }
+.title { font-size: 40px; font-weight: 900; margin-bottom: 10px; line-height: 1.1; }
+.title span { color: #ff0033; text-shadow: 0 0 20px rgba(255,0,51,0.5); }
+.glass-card { background: rgba(20, 0, 0, 0.4); border: 1px solid rgba(255, 0, 51, 0.3); border-radius: 16px; padding: 30px; backdrop-filter: blur(12px); text-align: center; position: relative; }
+.price-tag { font-size: 36px; font-weight: 900; color: #ff0033; margin: 15px 0; }
+.rarity-badge { position: relative; display: inline-block; background: #ff0033; color: #fff; font-size: 12px; font-weight: 900; padding: 5px 10px; border-radius: 4px; text-transform: uppercase; margin-bottom: 15px; }
+.footer { text-align: center; padding: 40px 0; color: #444; border-top: 1px solid rgba(255,0,51,0.2); margin-top: 80px; font-weight: 700; font-size: 12px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo" onclick="window.location.href='01home.html'">GIMMETHELOOT</div>
+            <div class="nav">
+                <a href="01home.html">Главная</a>
+                <a href="02catalog.html">Каталог</a>
+                <a href="06profile.html">Профиль</a>
+                <a href="09cart.html">Корзина</a>
+            </div>
+        </div>
+        <div class="content" style="min-height: 65vh; padding: 60px 0;" id="boxContent">
+            <div style="display: flex; gap: 50px;">
+                <div style="flex: 1;">
+                    <div class="glass-card" style="height: 400px; display: flex; align-items: center; justify-content: center; font-size: 80px;" id="boxIcon">📦</div>
+                </div>
+                <div style="flex: 1;">
+                    <div class="rarity-badge" id="boxRarity">Rare</div>
+                    <h1 class="title" id="boxTitle">ЗАГРУЗКА <span>БОКСА...</span></h1>
+                    <p style="color: #999; margin-bottom: 20px;" id="boxDesc">Подтягиваем данные из таблицы MS SQL Server...</p>
+                    <h2 class="price-tag" id="boxPrice">0 ₽</h2>
+                    <div style="margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                        <h4 style="margin-top: 0; color: #aaa;">ВОЗМОЖНЫЙ ДРОП ИЗ БАЗЫ:</h4>
+                        <div id="dropList">Загрузка предметов...</div>
+                    </div>
+                    <button class="btn-glow" style="width: 100%; font-size: 20px;" onclick="addToCart()">Добавить в корзину</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            &copy; 2026 Gimmetheloot. Проект "Секретные коробки". UI Design.
+        </div>
+    </div>
+
+    <script>
+        let currentBox = null;
+
+        async function loadBoxData() {
+            try {
+                const resBoxes = await fetch('/api/boxes');
+                const boxes = await resBoxes.json();
+
+                if (boxes && boxes.length > 0) {
+                    currentBox = boxes[0];
+                    document.getElementById('boxIcon').innerText = currentBox.Icon || currentBox.icon || '💻';
+                    document.getElementById('boxRarity').innerText = currentBox.Rarity || currentBox.rarity || 'Rare';
+                    document.getElementById('boxTitle').innerHTML = `${currentBox.Name || currentBox.name || 'IT BOX'} <span>BOX</span>`;
+                    document.getElementById('boxPrice').innerText = `${currentBox.Price || currentBox.price || 1500} ₽`;
+                }
+
+                const resItems = await fetch('/api/items');
+                const items = await resItems.json();
+
+                const dropList = document.getElementById('dropList');
+                dropList.innerHTML = '';
+
+                if (items && items.length > 0) {
+                    items.forEach(item => {
+                        const name = item.Name || item.name || 'Предмет';
+                        const rarity = item.Rarity || item.rarity || 'Common';
+                        const chance = item.DropChance || item.chance || '30%';
+
+                        dropList.innerHTML += `
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>${name} (${rarity})</span> 
+                                <strong style="color: #ff0033;">${chance}</strong>
+                            </div>
+                        `;
+                    });
+                } else {
+                    dropList.innerHTML = '<div>Предметы не найдены в базе.</div>';
+                }
+
+            } catch (err) {
+                console.error('Ошибка:', err);
+            }
+        }
+
+        function addToCart() {
+            window.location.href = '09cart.html';
+        }
+
+        loadBoxData();
+    </script>
+</body>
+</html>

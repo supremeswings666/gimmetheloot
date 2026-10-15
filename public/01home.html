@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная | Gimmetheloot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+        
+        body { 
+            margin: 0; 
+            background-color: #080808; 
+            color: #ffffff; 
+            font-family: 'Montserrat', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        .container { 
+            max-width: 1280px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+
+        .header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 0; 
+            border-bottom: 1px solid rgba(255, 0, 51, 0.3); 
+        }
+
+        .logo { 
+            font-size: 32px; 
+            font-weight: 900; 
+            color: #ff0033; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            text-shadow: 0 0 15px rgba(255, 0, 51, 0.8), 0 0 30px rgba(255, 0, 51, 0.4); 
+            cursor: pointer; 
+        }
+
+        .nav a { 
+            color: #ccc; 
+            text-decoration: none; 
+            margin-left: 30px; 
+            font-weight: 700; 
+            transition: 0.3s; 
+            font-size: 14px; 
+            text-transform: uppercase; 
+        }
+
+        .nav a:hover { 
+            color: #ff0033; 
+            text-shadow: 0 0 10px #ff0033; 
+        }
+
+        .btn-glow { 
+            background: linear-gradient(45deg, #ff0033, #80001a); 
+            border: 1px solid #ff0033; 
+            color: white; 
+            padding: 16px 32px; 
+            border-radius: 8px; 
+            font-weight: 900; 
+            font-size: 16px; 
+            cursor: pointer; 
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.5); 
+            transition: 0.3s; 
+            text-transform: uppercase; 
+        }
+
+        .btn-glow:hover { 
+            box-shadow: 0 0 40px rgba(255, 0, 51, 0.9); 
+            transform: translateY(-2px); 
+        }
+
+        .title { 
+            font-size: 56px; 
+            font-weight: 900; 
+            margin-bottom: 20px; 
+            line-height: 1.1; 
+        }
+
+        .title span { 
+            color: #ff0033; 
+            text-shadow: 0 0 20px rgba(255,0,51,0.5); 
+        }
+
+        .subtitle { 
+            font-size: 18px; 
+            color: #999; 
+            margin-bottom: 40px; 
+            max-width: 600px; 
+            line-height: 1.5; 
+        }
+
+        .glass-card { 
+            background: rgba(20, 0, 0, 0.4); 
+            border: 1px solid rgba(255, 0, 51, 0.3); 
+            border-radius: 16px; 
+            padding: 30px; 
+            backdrop-filter: blur(12px); 
+            text-align: center; 
+            transition: 0.4s; 
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .glass-card::before { 
+            content: ''; 
+            position: absolute; 
+            top: -50%; 
+            left: -50%; 
+            width: 200%; 
+            height: 200%; 
+            background: radial-gradient(circle, rgba(255,0,51,0.1) 0%, transparent 70%); 
+            opacity: 0; 
+            transition: 0.5s; 
+        }
+
+        .glass-card:hover::before { 
+            opacity: 1; 
+        }
+
+        .glass-card:hover { 
+            transform: translateY(-10px); 
+            border-color: #ff0033; 
+            box-shadow: 0 15px 30px rgba(255, 0, 51, 0.2); 
+        }
+
+        .box-image { 
+            width: 100%; 
+            height: 200px; 
+            background: #111; 
+            border-radius: 8px; 
+            margin-bottom: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border: 1px solid #333; 
+            font-size: 40px; 
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8); 
+        }
+
+        .footer { 
+            text-align: center; 
+            padding: 40px 0; 
+            color: #444; 
+            border-top: 1px solid rgba(255,0,51,0.2); 
+            margin-top: 80px; 
+            font-weight: 700; 
+            font-size: 12px; 
+            text-transform: uppercase; 
+        }
+
+        @keyframes pulse { 
+            from { transform: scale(1); } 
+            to { transform: scale(1.1); } 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo" onclick="window.location.href='01home.html'">GIMMETHELOOT</div>
+            <div class="nav">
+                <a href="01home.html">Главная</a>
+                <a href="02catalog.html">Каталог</a>
+                <a href="06profile.html">Профиль</a>
+                <a href="09cart.html">Корзина</a>
+            </div>
+        </div>
+
+        <div class="content" style="min-height: 65vh; padding: 60px 0;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+                <div style="flex: 1;">
+                    <h1 class="title">ХВАТИТ ДАРИТЬ <span>СКУЧНОЕ</span></h1>
+                    <p class="subtitle">Открой секретную коробку с прозрачным шансом дропа. Интерактивная распаковка, честные вероятности и крутой лут для гиков и интровертов.</p>
+                    <button class="btn-glow" onclick="window.location.href='02catalog.html'">Испытать удачу</button>
+                </div>
+                <div style="flex: 1; display: flex; justify-content: center;">
+                    <div style="width: 350px; height: 350px; background: radial-gradient(circle, rgba(255,0,51,0.2) 0%, transparent 70%); position: relative; animation: pulse 2s infinite alternate;">
+                        <div class="glass-card" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; z-index: 2; cursor: pointer;" onclick="window.location.href='03boxcard.html'">
+                            <div class="box-image">📦</div>
+                            <h3 style="margin: 0; color: #fff;">Legendary Box</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Gimmetheloot. Проект "Секретные коробки". UI Design.
+        </div>
+    </div>
+</body>
+</html>
