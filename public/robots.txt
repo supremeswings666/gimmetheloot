@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /catalog
+Allow: /boxes/
+
+# Закрываем технические страницы и корзину от индексации
+Disallow: /admin/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account/
+Disallow: /api/
+
+# Указываем ссылку на карту сайта
+Sitemap: https://yourdomain.ru/sitemap.xml

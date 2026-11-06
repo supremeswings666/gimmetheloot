@@ -11,10 +11,8 @@ app.use(express.json());
 
 const publicPath = path.join(__dirname, '..', 'public');
 
-// Раздача статики
 app.use(express.static(publicPath));
 
-// Настройки MS SQL Server
 const dbConfig = {
     user: 'sa',
     password: '12345',
@@ -30,14 +28,13 @@ const dbConfig = {
 async function connectDB() {
     try {
         await sql.connect(dbConfig);
-        console.log('✅ УСПЕШНО ПОДКЛЮЧИЛИСЬ К БАЗЕ!');
+        console.log('УСПЕШНО ПОДКЛЮЧИЛИСЬ К БАЗЕ!');
     } catch (err) {
-        console.error('❌ Ошибка подключения к MS SQL:', err.message);
+        console.error('Ошибка подключения к MS SQL:', err.message);
     }
 }
 connectDB();
 
-// API Endpoints
 app.get('/api/boxes', async (req, res) => {
     try {
         const result = await sql.query('SELECT * FROM Boxes');
